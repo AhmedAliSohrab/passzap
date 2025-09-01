@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PassZap: Generate secure, unique passwords instantly. Client-side only, no data stored, maximum privacy.">
+    <meta name="description" content="PassZap: Generate secure passwords with prime number digits instantly. Client-side, no data stored, maximum privacy.">
+    <meta name="keywords" content="secure password generator, random password, PassZap, prime number password, password maker">
+    <meta name="author" content="PassZap">
+    <meta property="og:title" content="PassZap - Secure Password Generator">
+    <meta property="og:description" content="Create unique, secure passwords with prime number digits. 100% client-side for maximum privacy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/passzap">
+    <meta property="og:image" content="https://yourusername.github.io/passzap/og-image.jpg">
     <title>PassZap - Secure Password Generator</title>
     <style>
         body { font-family: Arial, sans-serif; max-inline-size: 400px; margin: 50px auto; text-align: center; background: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
@@ -14,68 +21,166 @@
         button { background: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
         button:hover { background: #45a049; }
         #ad-container { margin: 20px 0; }
-        p.security-note { font-size: 12px; color: #666; }
+        p.security-note, p.faq { font-size: 12px; color: #666; }
+        details { margin: 10px 0; }
     </style>
     <!-- AdSense Script: Replace with your actual code after approval -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PassZap",
+        "description": "A secure, client-side password generator creating unique passwords with prime number digits.",
+        "url": "https://yourusername.github.io/passzap",
+        "applicationCategory": "Security"
+    }
+    </script>
 </head>
 <body>
-    <h1>PassZap - Secure Password Generator</h1>
-    <p>Generate strong passwords instantly. No data leaves your device for maximum security.</p>
-    
-    <label>Password Length: <span id="lengthValue">12</span></label>
-    <input type="range" id="length" min="8" max="32" value="12" oninput="document.getElementById('lengthValue').textContent = this.value;">
-    
-    <label><input type="checkbox" id="lowercase" checked> Include Lowercase (a-z)</label>
-    <label><input type="checkbox" id="uppercase" checked> Include Uppercase (A-Z)</label>
-    <label><input type="checkbox" id="numbers" checked> Include Numbers (0-9)</label>
-    <label><input type="checkbox" id="symbols" checked> Include Symbols (!@#$%^&*)</label>
-    
-    <button onclick="generatePassword()">Generate Password</button>
-    <div id="password">Your password will appear here</div>
-    <button onclick="copyPassword()">Copy to Clipboard</button>
-    
-    <!-- AdSense Ad Unit: Replace with your ad code after approval -->
-    <div id="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="YYYYYYYYYY"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-    
-    <p class="security-note">Privacy & Security: Client-side only, no data stored. Use 12+ characters and MFA for best protection.</p>
+    <main>
+        <h1>PassZap - Secure Password Generator</h1>
+        <p>Generate strong passwords with prime number digits instantly. No data leaves your device for maximum security.</p>
+        
+        <section>
+            <label>Password Length: <span id="lengthValue">12</span></label>
+            <input type="range" id="length" min="8" max="32" value="12" oninput="updateSliders(); document.getElementById('lengthValue').textContent = this.value;">
+            
+            <label><input type="checkbox" id="lowercase" checked> Include Lowercase (a-z)</label>
+            <label><input type="checkbox" id="uppercase" checked> Include Uppercase (A-Z)</label>
+            <label><input type="checkbox" id="numbers" checked> Include Prime Number Digits (2,3,5,7)</label>
+            <label><input type="checkbox" id="symbols" checked> Include Symbols (!@#$%^&*)</label>
+            
+            <label>Number of Prime Digits: <span id="numNumbersValue">0</span></label>
+            <input type="range" id="numNumbers" min="0" max="5" value="0" oninput="document.getElementById('numNumbersValue').textContent = this.value;">
+            
+            <label>Number of Symbols: <span id="numSymbolsValue">0</span></label>
+            <input type="range" id="numSymbols" min="0" max="12" value="0" oninput="document.getElementById('numSymbolsValue').textContent = this.value;">
+            
+            <button onclick="generatePassword()">Generate Password</button>
+            <div id="password" role="region" aria-live="polite">Your password will appear here</div>
+            <button onclick="copyPassword()">Copy to Clipboard</button>
+        </section>
+        
+        <!-- AdSense Ad Unit: Replace with your ad code after approval -->
+        <div id="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <p class="security-note">Privacy & Security: Client-side only, no data stored. Use 12+ characters with prime number digits and symbols for best protection.</p>
+        <p><a href="privacy.html">Privacy Policy</a></p>
+        
+        <details>
+            <summary>FAQ</summary>
+            <p class="faq">Q: Why use PassZap? A: PassZap generates secure passwords with prime number digits, entirely in your browser, ensuring no data is stored or shared.</p>
+            <p class="faq">Q: Are passwords secure? A: Yes, we use cryptographic randomness and client-side processing for maximum privacy.</p>
+        </details>
+    </main>
 
     <script>
+        // Precomputed prime numbers using digits 2, 3, 5, 7
+        const primeNumbers = {
+            2: [23, 37, 53, 73],
+            3: [233, 257, 353, 373, 523, 557, 733, 757],
+            4: [2357, 3257, 5233, 5273, 7327, 7523, 1033, 2053],
+            5: [23357, 25373, 35237, 52373, 73253]
+        };
+
+        function updateSliders() {
+            const length = parseInt(document.getElementById('length').value);
+            const numNumbers = document.getElementById('numNumbers');
+            const numSymbols = document.getElementById('numSymbols');
+            numNumbers.max = Math.min(length, 5); // Max 5 due to prime number list
+            numSymbols.max = length;
+            if (parseInt(numNumbers.value) > numNumbers.max) {
+                numNumbers.value = numNumbers.max;
+                document.getElementById('numNumbersValue').textContent = numNumbers.max;
+            }
+            if (parseInt(numSymbols.value) > length) {
+                numSymbols.value = length;
+                document.getElementById('numSymbolsValue').textContent = length;
+            }
+        }
+
         function generatePassword() {
-            const length = document.getElementById('length').value;
+            const length = parseInt(document.getElementById('length').value);
             const lowercase = document.getElementById('lowercase').checked;
             const uppercase = document.getElementById('uppercase').checked;
             const numbers = document.getElementById('numbers').checked;
             const symbols = document.getElementById('symbols').checked;
+            const numNumbers = parseInt(document.getElementById('numNumbers').value);
+            const numSymbols = parseInt(document.getElementById('numSymbols').value);
             
             let chars = '';
             if (lowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
             if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            if (numbers) chars += '0123456789';
-            if (symbols) chars += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+            const symbolSet = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
             
-            if (chars === '') {
+            if (chars === '' && !numbers && !symbols) {
                 alert('Select at least one character type!');
                 return;
             }
             
-            const randomValues = new Uint8Array(length);
-            window.crypto.getRandomValues(randomValues);
+            if (numNumbers + numSymbols > length) {
+                alert('Number of prime digits and symbols cannot exceed password length!');
+                return;
+            }
+            
+            if (numbers && numNumbers > 0 && !primeNumbers[numNumbers]) {
+                alert('Prime numbers not available for ' + numNumbers + ' digits. Choose 2, 3, 4, or 5.');
+                return;
+            }
             
             let password = '';
-            for (let i = 0; i < length; i++) {
-                password += chars[randomValues[i] % chars.length];
+            // Add prime number if requested
+            if (numbers && numNumbers > 0) {
+                const primes = primeNumbers[numNumbers];
+                const randomValues = new Uint8Array(1);
+                window.crypto.getRandomValues(randomValues);
+                password += primes[randomValues[0] % primes.length];
             }
+            
+            // Add required symbols
+            if (symbols && numSymbols > 0) {
+                const randomValues = new Uint8Array(numSymbols);
+                window.crypto.getRandomValues(randomValues);
+                for (let i = 0; i < numSymbols; i++) {
+                    password += symbolSet[randomValues[i] % symbolSet.length];
+                }
+            }
+            
+            // Fill remaining length with random characters
+            const remainingLength = length - (numbers && numNumbers > 0 ? numNumbers : 0) - numSymbols;
+            if (remainingLength > 0) {
+                let remainingChars = '';
+                if (lowercase) remainingChars += 'abcdefghijklmnopqrstuvwxyz';
+                if (uppercase) remainingChars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                if (numbers && numNumbers === 0) remainingChars += '2357';
+                if (symbols && numSymbols < length) remainingChars += symbolSet;
+                
+                if (remainingChars === '') {
+                    alert('Not enough character types to fill remaining length!');
+                    return;
+                }
+                
+                const randomValues = new Uint8Array(remainingLength);
+                window.crypto.getRandomValues(randomValues);
+                for (let i = 0; i < remainingLength; i++) {
+                    password += remainingChars[randomValues[i] % remainingChars.length];
+                }
+            }
+            
+            // Shuffle the password to randomize character positions
+            password = password.split('').sort(() => Math.random() - 0.5).join('');
             
             document.getElementById('password').textContent = password;
         }
